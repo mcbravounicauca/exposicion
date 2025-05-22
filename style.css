@@ -31,8 +31,8 @@ body {
 
 .character {
 	position: absolute;
-	width: 32px;
-	height: 32px;
+	width: 62px;
+	height: 62px;
 	z-index: 1;
 	transition: all 0.3s linear;
 }
