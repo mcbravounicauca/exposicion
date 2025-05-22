@@ -34,7 +34,7 @@ const steps = [
 	{ type: 'dialog', face: 'images/face.webp', text: 'No todas las voces tienen el mismo volumen en el aula. Lo afro se silencia porque no es mayoría. Pero la etnoeducación no es de mayorías: es de memorias, dignidades y resistencias.' },
 	{ type: 'dialog', face: 'images/face.webp', text: 'Callar también educa. Por eso decidí hablar.' },
 
-	{ type: 'missionComplete', text: 'Meta desbloqueada: Vencer el silencio' },
+	{ type: 'missionComplete', text: 'Meta desbloqueada: Vencer el silencio.' },
 
 	{ type: 'walkTo', character: 'mary', to: { left: 612, top: 324 } },
 
@@ -52,7 +52,7 @@ const steps = [
 	{ type: 'dialog', face: 'images/face.webp', text: 'También quiero narrar esta experiencia de forma distinta. Por eso uso esta exposición interactiva y crearé un video animado con Powtoon.' },
 	{ type: 'dialog', face: 'images/face.webp', text: 'Así, las TIC se convierten en aliadas de la etnoeducación. Porque contar también es resistir.' },
 
-	{ type: 'missionComplete', text: 'Meta desbloqueada: Una narración digital, que viaja por las redes' },
+	{ type: 'missionComplete', text: 'Meta desbloqueada: Una narración digital, que viaja por las redes.' },
 
 	{ type: 'walkTo', character: 'mary', to: { left: 620, top: 520 } },
 
@@ -61,7 +61,7 @@ const steps = [
 	{ type: 'dialog', face: 'images/face.webp', text: 'Mi práctica me enseñó que la interculturalidad no se presume, se construye. Que todas las culturas deben estar en el currículo, no solo en las fechas conmemorativas.' },
 	{ type: 'dialog', face: 'images/face.webp', text: 'Etnoeducar es escuchar, transformar y dignificar. Y tú, ¿qué harías si una voz importante no está siendo escuchada en tu aula?' },
 
-	{ type: 'missionComplete', text: 'Meta desbloqueada: Cierre reflexivo con llamado a la acción' },
+	{ type: 'missionComplete', text: 'Meta desbloqueada: Cierre reflexivo con llamado a la acción.' },
 ];
 
 let walkInterval = null;
