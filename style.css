@@ -67,3 +67,7 @@ body {
 .hidden {
 	display: none;
 }
+
+#dialog-box.hidden {
+	display: none;
+}

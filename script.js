@@ -99,8 +99,10 @@ function nextStep() {
 	const current = steps[step];
 	if (!current) return;
 
+	// Always hide the dialog box at the beginning of a step
+	dialogBox.classList.add('hidden');
+
 	if (current.type === 'wait') {
-		dialogBox.classList.add('hidden');
 		step++;
 	} else if (current.type === 'teacherEntrance') {
 		animateTeacherIn(current.from, current.to, () => {
