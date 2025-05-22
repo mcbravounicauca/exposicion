@@ -13,10 +13,10 @@ let textInterval = null;
 const steps = [
 	{ type: 'mission', text: 'Misión 1 – Explorar: ¿Qué está pasando aquí?' },
 
-	{ type: 'dialog', face: 'images/face.webp', text: 'Hola, soy Mary Catalina, etnoeducadora en formación. En esta casita quiero contarte cómo descubrí un conflicto ético en mi práctica en la Corporación Maestra Vida: la invisibilización de la cultura afrocolombiana, disfrazada de inclusión.' },
+	{ type: 'dialog', face: 'images/face.webp', text: 'Hola, soy Catalina, etnoeducadora en formación. En esta misión quiero contarte cómo descubrí un conflicto ético en mi práctica en la Corporación Maestra Vida: la invisibilización de la cultura afrocolombiana, disfrazada de inclusión.' },
 	{ type: 'dialog', face: 'images/face.webp', text: 'La danza afro aparecía en fechas especiales, pero sin historia ni contexto. ¿Es eso inclusión... o folclorización?' },
 
-	{ type: 'missionComplete', text: 'Meta desbloqueada: Descubres el conflicto ético: folclorización de lo afro.' },
+	{ type: 'missionComplete', text: 'Meta desbloqueada: Descubrí el conflicto ético: folclorización de lo afro.' },
 
 	{ type: 'walkTo', character: 'mary', to: { left: 616, top: 124 } },
 
