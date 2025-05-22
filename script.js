@@ -3,6 +3,7 @@ const teacher = document.getElementById('teacher');
 const dialogBox = document.getElementById('dialog-box');
 const faceImage = document.getElementById('face');
 const dialogText = document.getElementById('dialog-text');
+let isBusy = false;
 
 const frames = ['images/idle.webp', 'images/walk1.webp', 'images/walk2.webp'];
 let walkFrame = 0;
@@ -18,7 +19,7 @@ const steps = [
 
 	{ type: 'dialog', face: 'images/face.webp', text: 'Pa las que sea profe' },
 
-	{ type: 'dialog', face: 'images/teacherFace.webp', text: 'Debes hacer un mentegrama mostrando los problema de la escuela' },
+	{ type: 'dialog', face: 'images/teacherFace.webp', text: 'Debes hacer un mentegrama mostrando los problemas de la escuela' },
 
 	{ type: 'dialog', face: 'images/face.webp', text: 'Me pondré en ello' },
 
@@ -76,21 +77,21 @@ function animateTeacherIn(from, to, callback) {
 	}, 30);
 }
 
-function showDialog(face, text, callback) {
-	faceImage.src = face;
+function showDialog(face, text, onDone) {
 	dialogBox.classList.remove('hidden');
+	faceImage.src = face;
 	dialogText.textContent = '';
+	let i = 0;
 
-	let index = 0;
 	textInterval = setInterval(() => {
-		dialogText.textContent = text.slice(0, index + 1);
-		index++;
-		if (index >= text.length) {
+		if (i < text.length) {
+			dialogText.textContent += text[i++];
+		} else {
 			clearInterval(textInterval);
 			textInterval = null;
-			if (callback) callback();
+			onDone?.(); // call onDone when dialog finishes typing
 		}
-	}, 40);
+	}, 50);
 }
 
 function nextStep() {
@@ -105,16 +106,23 @@ function nextStep() {
 	if (current.type === 'wait') {
 		step++;
 	} else if (current.type === 'teacherEntrance') {
+		isBusy = true;
 		animateTeacherIn(current.from, current.to, () => {
+			isBusy = false;
 			step++;
 		});
 	} else if (current.type === 'walkTo') {
+		isBusy = true;
 		animateCatalina(current.to, () => {
+			isBusy = false;
 			step++;
 		});
 	} else if (current.type === 'dialog') {
-		showDialog(current.face, current.text);
-		step++;
+		isBusy = true;
+		showDialog(current.face, current.text, () => {
+			isBusy = false;
+			step++;
+		});
 	}
 }
 
@@ -128,9 +136,11 @@ function prevStep() {
 }
 
 document.addEventListener('keydown', (e) => {
-	if (e.key === 'ArrowRight' || e.key === 'Enter') {
+	if (isBusy) return;
+
+	if (e.key === 'ArrowRight') {
 		nextStep();
 	} else if (e.key === 'ArrowLeft') {
-		prevStep();
+		// Optional: implement going back
 	}
 });
