@@ -1,0 +1,69 @@
+body {
+	margin: 0;
+	background: whitesmoke;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+}
+
+#game-container {
+	position: relative;
+	width: 512px;
+	height: 512px;
+	image-rendering: pixelated;
+	border: 4px solid white;
+	overflow: hidden;
+	background: whitesmoke;
+}
+
+#world {
+	position: relative;
+	width: 512px;
+	height: 512px;
+}
+
+.location {
+	position: absolute;
+	width: 64px;
+	height: 64px;
+}
+
+.character {
+	position: absolute;
+	width: 32px;
+	height: 32px;
+	z-index: 1;
+	transition: all 0.3s linear;
+}
+
+#dialog-box {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	background: rgba(0, 0, 0, 0.85);
+	color: white;
+	font-family: monospace;
+	font-size: 14px;
+	display: flex;
+	align-items: flex-start;
+	gap: 10px;
+	padding: 10px;
+	box-sizing: border-box;
+	z-index: 2;
+}
+
+#face {
+	width: 64px;
+	height: 64px;
+}
+
+#dialog-text {
+	flex: 1;
+	white-space: pre-wrap;
+}
+
+.hidden {
+	display: none;
+}
