@@ -49,7 +49,7 @@ const steps = [
 
 	{ type: 'mission', text: 'Misión 5 – Innovar: ¿Cómo lo cuento de otra manera?' },
 
-	{ type: 'dialog', face: 'images/face.webp', text: 'También quiero narrar esta experiencia de forma distinta. Por eso uso esta exposición interactiva y crearé un video animado con Powtoon.' },
+	{ type: 'dialog', face: 'images/face.webp', text: 'Por eso he decidido crear esta exposición en modo videojuego' },
 	{ type: 'dialog', face: 'images/face.webp', text: 'Así, las TIC se convierten en aliadas de la etnoeducación. Porque contar también es resistir.' },
 
 	{ type: 'missionComplete', text: 'Meta desbloqueada: Una narración digital, que viaja por las redes.' },
@@ -224,7 +224,9 @@ function skipMission() {
 		missionText.textContent = currentDialog.text;
 		const onDone = currentDialog.onDone;
 		currentDialog = null;
+		hideMission();
 		onDone?.();
+		nextStep(); // ⬅️ fuerza avanzar al siguiente paso
 	}
 }
 
