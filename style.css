@@ -2,9 +2,15 @@ body {
 	margin: 0;
 	background: whitesmoke;
 	display: flex;
+	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 	height: 100vh;
+}
+
+h1 {
+	text-align: center;
+	font-size: 26px;
 }
 
 #game-container {
@@ -73,4 +79,18 @@ body {
 
 #dialog-box.hidden {
 	display: none;
+}
+
+#infoAutora {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	position: absolute;
+	top: 5px;
+	left: 5px;
+	background-color: whitesmoke;
+	border: 2px solid gray;
+	box-shadow: 2px 2px 2px gray;
+	padding: 10px 10px;
+	border-radius: 10px;
 }
