@@ -1,5 +1,4 @@
-const catalina = document.getElementById('catalina');
-const teacher = document.getElementById('teacher');
+const mary = document.getElementById('mary');
 const dialogBox = document.getElementById('dialog-box');
 const faceImage = document.getElementById('face');
 const dialogText = document.getElementById('dialog-text');
@@ -11,32 +10,34 @@ let step = 0;
 let textInterval = null;
 
 const steps = [
-	{ type: 'wait' },
-
-	{ type: 'teacherEntrance', from: 512, to: 272 },
-
-	{ type: 'dialog', face: 'images/teacherFace.webp', text: 'Hola Catalina, tengo algunas tareas para tí' },
-
-	{ type: 'dialog', face: 'images/face.webp', text: 'Pa las que sea profe' },
-
-	{ type: 'dialog', face: 'images/teacherFace.webp', text: 'Debes hacer un mentegrama mostrando los problemas de la escuela' },
-
-	{ type: 'dialog', face: 'images/face.webp', text: 'Me pondré en ello' },
-
-	{ type: 'walkTo', character: 'catalina', to: { left: 240, top: 64 } },
-
-	{ type: 'dialog', face: 'images/face.webp', text: 'He descubierto que el problema es grave' }
+	{ type: 'dialog', face: 'images/face.webp', text: 'Hola, soy Mary Catalina, etnoeducadora en formación. En esta casita quiero contarte cómo descubrí un conflicto ético en mi práctica en la Corporación Maestra Vida: la invisibilización de la cultura afrocolombiana, disfrazada de inclusión.' },
+	{ type: 'dialog', face: 'images/face.webp', text: 'La danza afro aparecía en fechas especiales, pero sin historia ni contexto. ¿Es eso inclusión... o folclorización?' },
+	{ type: 'walkTo', character: 'mary', to: { left: 416, top: 224 } },
+	{ type: 'dialog', face: 'images/face.webp', text: 'El conflicto no está en bailar, sino en cómo lo afro se presenta: sin participación afro, sin espiritualidad, sin pensamiento. Se convierte en espectáculo. Se excluye mientras parece incluir.' },
+	{ type: 'dialog', face: 'images/face.webp', text: 'La etnoeducación me enseñó que lo simbólico no basta. Necesitamos justicia curricular.' },
+	{ type: 'walkTo', character: 'mary', to: { left: 224, top: 416 } },
+	{ type: 'dialog', face: 'images/face.webp', text: 'No todas las voces tienen el mismo volumen en el aula. Lo afro se silencia porque no es mayoría. Pero la etnoeducación no es de mayorías: es de memorias, dignidades y resistencias.' },
+	{ type: 'dialog', face: 'images/face.webp', text: 'Callar también educa. Por eso decidí hablar.' },
+	{ type: 'walkTo', character: 'mary', to: { left: 32, top: 224 } },
+	{ type: 'dialog', face: 'images/face.webp', text: 'A los grupos Mariposas y Libélulas les interesaba la danza afrocolombiana. Vi en eso una oportunidad para integrar la Cátedra Afro de forma real.' },
+	{ type: 'dialog', face: 'images/face.webp', text: 'Usé la danza como puente para conocer la historia, la música, la espiritualidad y la identidad afro. Así nació mi PPE: Un ritmo que transforma.' },
+	{ type: 'walkTo', character: 'mary', to: { left: 128, top: 128 } },
+	{ type: 'dialog', face: 'images/face.webp', text: 'También quiero narrar esta experiencia de forma distinta. Por eso uso esta exposición interactiva y crearé un video animado con Powtoon.' },
+	{ type: 'dialog', face: 'images/face.webp', text: 'Así, las TIC se convierten en aliadas de la etnoeducación. Porque contar también es resistir.' },
+	{ type: 'walkTo', character: 'mary', to: { left: 320, top: 320 } },
+	{ type: 'dialog', face: 'images/face.webp', text: 'Mi práctica me enseñó que la interculturalidad no se presume, se construye. Que todas las culturas deben estar en el currículo, no solo en las fechas conmemorativas.' },
+	{ type: 'dialog', face: 'images/face.webp', text: 'Etnoeducar es escuchar, transformar y dignificar. Y tú, ¿qué harías si una voz importante no está siendo escuchada en tu aula?' }
 ];
 
-function animateCatalina(to, callback) {
-	let x = parseInt(catalina.style.left);
-	let y = parseInt(catalina.style.top);
+function animateMary(to, callback) {
+	let x = parseInt(mary.style.left);
+	let y = parseInt(mary.style.top);
 
 	const interval = setInterval(() => {
 		let moved = false;
 
 		walkFrame = (walkFrame + 1) % frames.length;
-		catalina.src = frames[walkFrame];
+		mary.src = frames[walkFrame];
 
 		if (Math.abs(x - to.left) > 2) {
 			x += (x < to.left) ? 2 : -2;
@@ -48,33 +49,15 @@ function animateCatalina(to, callback) {
 			moved = true;
 		}
 
-		catalina.style.left = `${x}px`;
-		catalina.style.top = `${y}px`;
+		mary.style.left = `${x}px`;
+		mary.style.top = `${y}px`;
 
 		if (!moved) {
 			clearInterval(interval);
-			catalina.src = frames[0];
+			mary.src = frames[0];
 			callback && callback();
 		}
 	}, 60);
-}
-
-function animateTeacherIn(from, to, callback) {
-	teacher.classList.remove('hidden');
-	teacher.style.left = `${from}px`;
-	teacher.style.top = `240px`;
-
-	let x = from;
-	const interval = setInterval(() => {
-		if (x <= to) {
-			teacher.style.left = `${to}px`;
-			clearInterval(interval);
-			callback && callback();
-			return;
-		}
-		x -= 2;
-		teacher.style.left = `${x}px`;
-	}, 30);
 }
 
 function showDialog(face, text, onDone) {
@@ -103,17 +86,9 @@ function nextStep() {
 	// Always hide the dialog box at the beginning of a step
 	dialogBox.classList.add('hidden');
 
-	if (current.type === 'wait') {
-		step++;
-	} else if (current.type === 'teacherEntrance') {
+	if (current.type === 'walkTo') {
 		isBusy = true;
-		animateTeacherIn(current.from, current.to, () => {
-			isBusy = false;
-			step++;
-		});
-	} else if (current.type === 'walkTo') {
-		isBusy = true;
-		animateCatalina(current.to, () => {
+		animateMary(current.to, () => {
 			isBusy = false;
 			step++;
 		});
@@ -126,21 +101,10 @@ function nextStep() {
 	}
 }
 
-function prevStep() {
-	if (step > 0) {
-		step--;
-		dialogBox.classList.add('hidden');
-		clearInterval(textInterval);
-		textInterval = null;
-	}
-}
-
 document.addEventListener('keydown', (e) => {
 	if (isBusy) return;
 
 	if (e.key === 'ArrowRight') {
 		nextStep();
-	} else if (e.key === 'ArrowLeft') {
-		// Optional: implement going back
 	}
 });
